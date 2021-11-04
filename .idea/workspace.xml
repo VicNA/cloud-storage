@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="Init project" />
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,9 +41,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-storage-client/storage" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -48,9 +52,9 @@
       <recent name="D:\JavaFiles\JavaProject\IdeaProject\cloud-storage\cloud-storage-server\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApp">
-    <configuration name="MainApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.geekbrains.MainApp" />
+  <component name="RunManager" selected="Application.ServerApp">
+    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ClientApp" />
       <module name="cloud-storage-client" />
       <extension name="coverage">
         <pattern>
@@ -75,13 +79,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ServerApp" />
+      <module name="cloud-storage-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.MainApp" />
       <item itemvalue="Application.Server" />
+      <item itemvalue="Application.ServerApp" />
+      <item itemvalue="Application.ClientApp" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApp" />
+        <item itemvalue="Application.ClientApp" />
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.Server" />
       </list>
     </recent_temporary>
@@ -95,6 +114,28 @@
       <option name="presentableId" value="Default" />
       <updated>1635842206881</updated>
     </task>
+    <task id="LOCAL-00001" summary="HomeWork1 v1">
+      <created>1636015791109</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636015791109</updated>
+    </task>
+    <task id="LOCAL-00002" summary="HomeWork1 v2">
+      <created>1636033839536</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636033839536</updated>
+    </task>
+    <task id="LOCAL-00003" summary="HomeWork1 v3">
+      <created>1636035195769</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636035195769</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,7 +152,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init project" />
+    <MESSAGE value="HomeWork1 v1" />
+    <MESSAGE value="HomeWork1 v2" />
+    <MESSAGE value="HomeWork1 v3" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
