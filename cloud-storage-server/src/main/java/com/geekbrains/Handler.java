@@ -63,28 +63,19 @@ public class Handler {
 
                 if (msg.startsWith("/")) {
                     if (msg.startsWith("/file ")) {
-                        String fileName = msg.split(" ", 2)[1];
+                        String[] strings = msg.split(" ", 3);
+                        int size = Integer.parseInt(strings[1]);
+                        String fileName = strings[2];
+
                         Path filePath = Paths.get(serverDir.toString(), fileName);
                         log.debug(filePath.toString());
                         if (!Files.exists(filePath)) Files.createFile(filePath);
                         File file = new File(filePath.toString());
 
-                        byte[] bytes = new byte[1024];
-                        int in;
-                        int pos = 0;
+                        byte[] bytes = new byte[size];
                         try (BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(file))) {
-//                            count = is.read(bytes);
-//                            fos.write(bytes, 0, count);
-//                            do {
-//                                pos += count;
-//                                count = is.read(bytes);
-//                                fos.write(bytes, pos - 1, count);
-//                            } while (count != -1);
-                            while ((in = is.read(bytes)) != -1) {
-                                log.debug(String.valueOf(in));
-                                fos.write(bytes, 0, in);
-//                                fos.flush();
-                            }
+                            is.read(bytes, 0, bytes.length);
+                            fos.write(bytes, 0, bytes.length);
                             fos.flush();
                         }
                     }

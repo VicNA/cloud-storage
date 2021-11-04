@@ -74,7 +74,7 @@ public class ClientController implements Initializable {
 
                 if (msg.startsWith("/")) {
                     if (msg.startsWith("/file ")) {
-                        Platform.runLater(() -> serverView.getItems().add(msg.split(" ", 2)[1]));
+                        Platform.runLater(() -> serverView.getItems().add(msg.split(" ", 3)[1]));
                     }
                 }
             }
@@ -103,13 +103,12 @@ public class ClientController implements Initializable {
         File file = new File(filePath.toString());
 
         try (BufferedInputStream fis = new BufferedInputStream(new FileInputStream(file))) {
-            os.writeUTF("/file " + fileName);
+            log.debug("/file " + file.length() + " " + fileName);
+            os.writeUTF("/file " + file.length() + " " + fileName);
 
-            byte[] bytes = new byte[1024];
-            int in;
-            while ((in = fis.read(bytes)) != -1) {
-                os.write(bytes, 0 , in);
-            }
+            byte[] bytes = new byte[(int) file.length()];
+            fis.read(bytes, 0, bytes.length);
+            os.write(bytes, 0, bytes.length);
             os.flush();
         } catch (IOException e) {
             e.printStackTrace();

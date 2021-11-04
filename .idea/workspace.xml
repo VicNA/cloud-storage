@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v1">
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636015791109</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HomeWork1 v2">
+      <created>1636033839536</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636033839536</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,7 +146,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init project" />
     <MESSAGE value="HomeWork1 v1" />
-    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v1" />
+    <MESSAGE value="HomeWork1 v2" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
