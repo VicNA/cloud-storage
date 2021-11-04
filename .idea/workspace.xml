@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v2">
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" afterDir="false" />
@@ -128,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636033839536</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="HomeWork1 v3">
+      <created>1636035195769</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636035195769</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,7 +154,8 @@
     <MESSAGE value="Init project" />
     <MESSAGE value="HomeWork1 v1" />
     <MESSAGE value="HomeWork1 v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v2" />
+    <MESSAGE value="HomeWork1 v3" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

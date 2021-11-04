@@ -31,9 +31,7 @@ public class Handler {
         if (!Files.exists(serverDir)) Files.createDirectory(serverDir);
 
         is = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-//        is = new DataInputStream(socket.getInputStream());
         os = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-//        os = new DataOutputStream(socket.getOutputStream());
         name = "User#" + ++counter;
         log.debug("Set nick: {} for new client", name);
 
@@ -78,6 +76,8 @@ public class Handler {
                             fos.write(bytes, 0, bytes.length);
                             fos.flush();
                         }
+
+                        os.writeUTF("/file " + fileName);
                     }
                 }
 

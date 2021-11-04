@@ -41,9 +41,7 @@ public class ClientController implements Initializable {
             addListFiles();
 
             Socket socket = new Socket("localhost", 8189);
-//            is = new DataInputStream(socket.getInputStream());
             is = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-//            os = new DataOutputStream(socket.getOutputStream());
             os = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
             Thread readThread = new Thread(this::read);
@@ -74,7 +72,12 @@ public class ClientController implements Initializable {
 
                 if (msg.startsWith("/")) {
                     if (msg.startsWith("/file ")) {
-                        Platform.runLater(() -> serverView.getItems().add(msg.split(" ", 3)[1]));
+                        String fileName = msg.split(" ", 3)[1];
+                        Platform.runLater(() -> {
+                            if (!serverView.getItems().contains(fileName)) {
+                                serverView.getItems().add(fileName);
+                            }
+                        });
                     }
                 }
             }
