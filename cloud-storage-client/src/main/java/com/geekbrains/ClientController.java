@@ -8,9 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.nio.file.Files;
@@ -30,6 +28,9 @@ public class ClientController implements Initializable {
     private DataInputStream is;
     private DataOutputStream os;
 
+    private BufferedInputStream bis;
+    private BufferedOutputStream bos;
+
     private Path clientdDir;
 
     @Override
@@ -40,8 +41,10 @@ public class ClientController implements Initializable {
             addListFiles();
 
             Socket socket = new Socket("localhost", 8189);
-            is = new DataInputStream(socket.getInputStream());
-            os = new DataOutputStream(socket.getOutputStream());
+//            is = new DataInputStream(socket.getInputStream());
+            is = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+//            os = new DataOutputStream(socket.getOutputStream());
+            os = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
 
             Thread readThread = new Thread(this::read);
             readThread.setDaemon(true);
@@ -54,6 +57,7 @@ public class ClientController implements Initializable {
     private void addListFiles() throws IOException {
         clientView.getItems().clear();
         clientView.getItems().addAll(getFiles(clientdDir));
+        clientView.getSelectionModel().selectFirst();
     }
 
     private List<String> getFiles(Path path) throws IOException {
@@ -67,7 +71,12 @@ public class ClientController implements Initializable {
             while (true) {
                 String msg = is.readUTF();
                 log.debug("Received: {}", msg);
-                Platform.runLater(() -> clientView.getItems().add(msg));
+
+                if (msg.startsWith("/")) {
+                    if (msg.startsWith("/file ")) {
+                        Platform.runLater(() -> serverView.getItems().add(msg.split(" ", 2)[1]));
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,5 +95,27 @@ public class ClientController implements Initializable {
             String item = clientView.getSelectionModel().getSelectedItem();
             input.setText(item);
         }
+    }
+
+    public void addFile(ActionEvent actionEvent) {
+        String fileName = clientView.getSelectionModel().getSelectedItem();
+        Path filePath = Paths.get(clientdDir.toString(), fileName);
+        File file = new File(filePath.toString());
+
+        try (BufferedInputStream fis = new BufferedInputStream(new FileInputStream(file))) {
+            os.writeUTF("/file " + fileName);
+
+            byte[] bytes = new byte[1024];
+            int in;
+            while ((in = fis.read(bytes)) != -1) {
+                os.write(bytes, 0 , in);
+            }
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteFile(ActionEvent actionEvent) {
     }
 }
