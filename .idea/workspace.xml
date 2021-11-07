@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v3">
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork2 v1">
+      <change afterPath="$PROJECT_DIR$/simple-telnet/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/NioServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/ServerApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple-telnet/src/main/resources/log4j.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/MainApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +32,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="HomeWork1" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="20M6eMhx7qGI0fgdftxulpqNfWR" />
@@ -39,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cloud-storage-nov" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/simple-telnet/src/main/resources" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -47,12 +56,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="O:\JavaFiles\JavaProjects\IdeaProject\cloud-storage\simple-telnet\src\main\resources" />
       <recent name="D:\JavaFiles\JavaProject\IdeaProject\cloud-storage\cloud-storage-client\storage" />
       <recent name="D:\JavaFiles\JavaProject\IdeaProject\cloud-storage\cloud-storage-client\src\main\resources" />
       <recent name="D:\JavaFiles\JavaProject\IdeaProject\cloud-storage\cloud-storage-server\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerApp">
+  <component name="RunManager" selected="Application.ServerApp (1)">
     <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.geekbrains.ClientApp" />
       <module name="cloud-storage-client" />
@@ -69,6 +79,19 @@
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.geekbrains.Server" />
       <module name="cloud-storage-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerApp (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ServerApp" />
+      <module name="simple-telnet" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.geekbrains.*" />
@@ -96,9 +119,11 @@
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.ServerApp" />
       <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.ServerApp (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApp (1)" />
         <item itemvalue="Application.ClientApp" />
         <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.Server" />
@@ -135,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636035195769</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="HomeWork2 v1">
+      <created>1636292032784</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636292032784</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,7 +187,8 @@
     <MESSAGE value="HomeWork1 v1" />
     <MESSAGE value="HomeWork1 v2" />
     <MESSAGE value="HomeWork1 v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="HomeWork1 v3" />
+    <MESSAGE value="HomeWork2 v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomeWork2 v1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
