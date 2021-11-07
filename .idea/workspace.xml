@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork1 v3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/MainApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/MainController.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cloud-storage-client/storage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cloud-storage-nov" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
