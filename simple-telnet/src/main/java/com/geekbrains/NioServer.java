@@ -41,23 +41,20 @@ public class NioServer {
     }
 
     private void serverHandle() throws IOException {
-//        while (serverChannel.isOpen()) {
         while (selector.select() > 0) {
-//            selector.select();
+            StringBuilder sb = new StringBuilder("From server: ");
             Set<SelectionKey> keys = selector.selectedKeys();
             Iterator<SelectionKey> iterator = keys.iterator();
             while (iterator.hasNext()) {
-//            for (SelectionKey key : keys) {
                 SelectionKey key = iterator.next();
                 if (key.isAcceptable()) doAccept();
                 if (key.isReadable()) doRead(key);
                 iterator.remove();
             }
-//            keys.clear();
         }
     }
 
-    private StringBuilder doRead(SelectionKey key) throws IOException {
+    private void doRead(SelectionKey key) throws IOException {
         SocketChannel channel = (SocketChannel) key.channel();
         StringBuilder sb = new StringBuilder("From server: ");
         while (channel.isOpen()) {
