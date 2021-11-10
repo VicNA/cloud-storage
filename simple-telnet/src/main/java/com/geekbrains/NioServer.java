@@ -3,13 +3,10 @@ package com.geekbrains;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
-import java.io.IOException;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -84,33 +81,69 @@ public class NioServer {
         }
 
         log.debug("Received: {}", sb);
-//        channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
+
         if (sb.toString().trim().equals("ls")) {
             sb.setLength(0);
-//            if (currentPath == null) currentPath = DEFAULT_PATH;
             Path path = Paths.get(currentPath);
-            Files.walk(path, 1).forEach(p -> sb.append(p).append(System.lineSeparator()));
+            System.out.println(currentPath);
+            Files.walk(path, 1).forEach(p -> sb.append(p.getFileName()).append(System.lineSeparator()));
             channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
-
         }
 
         if (sb.toString().trim().startsWith("cd ")) {
-            String cur = sb.toString().trim().split(" ", 2)[1];
-//            defaultPath = sb.toString().trim().split(" ", 2)[1];
-            Path path;
-            if (cur.equals("..")) {
-                path = Paths.get(currentPath).getParent();
-                if (path == null) path = Paths.get("");
-            } else {
-                path = Paths.get(cur);
+            Path path = getPath(sb.toString());
+            if (path != null) {
+                sb.setLength(0);
+                sb.append(path.toAbsolutePath()).append(System.lineSeparator());
+                channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
+                currentPath = path.toAbsolutePath().toString();
             }
-            sb.setLength(0);
-            sb.append(path).append(System.lineSeparator());
-            channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
-            currentPath = path.toString();
         }
 
-        channel.write(ByteBuffer.wrap(">".getBytes(StandardCharsets.UTF_8)));
+        if (sb.toString().trim().startsWith("cat ")) {
+            Path path = getPath(sb.toString());
+            sb.setLength(0);
+            if (Files.isDirectory(path)) {
+                sb.append("cat: ").append(path.getFileName()).append(": Is a directory");
+            } else {
+                ByteBuffer buf = ByteBuffer.allocate(10);
+                byte[] result;
+                try (SeekableByteChannel byteChannel = Files.newByteChannel(path)) {
+                    result = new byte[(int) byteChannel.size()];
+                    int pos = 0;
+                    while (byteChannel.read(buf) > 0) {
+                        buf.flip();
+                        while (buf.hasRemaining()) {
+                            result[pos++] = buf.get();
+                        }
+                        buf.clear();
+                    }
+                }
+                sb.append(new String(result, StandardCharsets.UTF_8)).append(System.lineSeparator());
+            }
+            channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
+        }
+
+        channel.write(ByteBuffer.wrap(String.format("telnet %s>", currentPath).getBytes(StandardCharsets.UTF_8)));
+    }
+
+    private Path getPath(String pathString) {
+        String cur = pathString.trim().split(" ", 2)[1];
+        System.out.println("1. " + cur);
+        Path path = null;
+        if (cur.equals("..")) {
+            path = Paths.get(currentPath).getParent();
+            if (path == null) path = Paths.get(currentPath);
+        } else {
+            if (!cur.equals(currentPath)) {
+                if (cur.contains(currentPath) || cur.contains("\\") || cur.contains("/")) {
+                    path = Paths.get(cur);
+                } else {
+                    path = Paths.get(currentPath, cur);
+                }
+            }
+        }
+        return path;
     }
 
     private void doAccept() throws IOException {
