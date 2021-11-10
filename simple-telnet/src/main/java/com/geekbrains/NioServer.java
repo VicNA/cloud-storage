@@ -23,12 +23,13 @@ public class NioServer {
 
     private static final int PORT = 8189;
     private static final int BUFFER_SIZE = 10;
-
-    private String defaultPath = "";
+    private static final String DEFAULT_PATH = System.getenv("USERPROFILE");
 
     private final ByteBuffer buffer;
     private Selector selector;
     private ServerSocketChannel serverChannel;
+
+    private String currentPath;
 
     public NioServer() {
         buffer = ByteBuffer.allocate(BUFFER_SIZE);
@@ -41,6 +42,7 @@ public class NioServer {
             serverChannel.register(selector, SelectionKey.OP_ACCEPT);
             log.debug("Server started...");
 
+            currentPath = DEFAULT_PATH;
             serverHandle();
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,9 +86,9 @@ public class NioServer {
         log.debug("Received: {}", sb);
 //        channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
         if (sb.toString().trim().equals("ls")) {
-            System.out.println(sb);
             sb.setLength(0);
-            Path path = Paths.get(defaultPath);
+//            if (currentPath == null) currentPath = DEFAULT_PATH;
+            Path path = Paths.get(currentPath);
             Files.walk(path, 1).forEach(p -> sb.append(p).append(System.lineSeparator()));
             channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
 
@@ -97,7 +99,7 @@ public class NioServer {
 //            defaultPath = sb.toString().trim().split(" ", 2)[1];
             Path path;
             if (cur.equals("..")) {
-                path = Paths.get(defaultPath).getParent();
+                path = Paths.get(currentPath).getParent();
                 if (path == null) path = Paths.get("");
             } else {
                 path = Paths.get(cur);
@@ -105,8 +107,10 @@ public class NioServer {
             sb.setLength(0);
             sb.append(path).append(System.lineSeparator());
             channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
-            defaultPath = path.toString();
+            currentPath = path.toString();
         }
+
+        channel.write(ByteBuffer.wrap(">".getBytes(StandardCharsets.UTF_8)));
     }
 
     private void doAccept() throws IOException {

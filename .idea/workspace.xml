@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork2 v2">
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork2 v4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/NioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/NioServer.java" afterDir="false" />
     </list>
@@ -184,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636306765461</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="HomeWork2 v4">
+      <created>1636381293553</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1636381293553</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,7 +219,8 @@
     <MESSAGE value="HomeWork1 v3" />
     <MESSAGE value="HomeWork2 v1" />
     <MESSAGE value="HomeWork2 v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="HomeWork2 v2" />
+    <MESSAGE value="HomeWork2 v4" />
+    <option name="LAST_COMMIT_MESSAGE" value="HomeWork2 v4" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
