@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.awt.*;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
@@ -85,7 +86,6 @@ public class NioServer {
         if (sb.toString().trim().equals("ls")) {
             sb.setLength(0);
             Path path = Paths.get(currentPath);
-            System.out.println(currentPath);
             Files.walk(path, 1).forEach(p -> sb.append(p.getFileName()).append(System.lineSeparator()));
             channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
         }
@@ -124,12 +124,26 @@ public class NioServer {
             channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
         }
 
+        if (sb.toString().trim().startsWith("mkdir ")) {
+            String dir = sb.toString().trim().split(" ", 2)[1];
+            if (!dir.equals(currentPath)) {
+                if (!(dir.contains(currentPath)  || dir.contains("\\") || dir.contains("/"))) {
+                    Path path = Paths.get(currentPath).resolve(dir);
+                    if (!Files.exists(path)) {
+                        Files.createDirectory(path);
+                        sb.setLength(0);
+                        sb.append("Directory ").append(dir).append(" created").append(System.lineSeparator());
+                        channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
+                    }
+                }
+            }
+        }
+
         channel.write(ByteBuffer.wrap(String.format("telnet %s>", currentPath).getBytes(StandardCharsets.UTF_8)));
     }
 
     private Path getPath(String pathString) {
         String cur = pathString.trim().split(" ", 2)[1];
-        System.out.println("1. " + cur);
         Path path = null;
         if (cur.equals("..")) {
             path = Paths.get(currentPath).getParent();
