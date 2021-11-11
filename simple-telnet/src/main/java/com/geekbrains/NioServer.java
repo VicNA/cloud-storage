@@ -139,6 +139,21 @@ public class NioServer {
             }
         }
 
+        if (sb.toString().trim().startsWith("touch ")) {
+            String file = sb.toString().trim().split(" ", 2)[1];
+            if (!file.equals(currentPath)) {
+                if (!(file.contains(currentPath)  || file.contains("\\") || file.contains("/"))) {
+                    Path path = Paths.get(currentPath).resolve(file);
+                    if (!Files.exists(path)) {
+                        Files.createFile(path);
+                        sb.setLength(0);
+                        sb.append("File ").append(file).append(" created").append(System.lineSeparator());
+                        channel.write(ByteBuffer.wrap(sb.toString().getBytes(StandardCharsets.UTF_8)));
+                    }
+                }
+            }
+        }
+
         channel.write(ByteBuffer.wrap(String.format("telnet %s>", currentPath).getBytes(StandardCharsets.UTF_8)));
     }
 
