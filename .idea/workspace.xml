@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork2 v3">
-      <change afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/DiscardServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/DiscardServerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/TimeServerHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/StorageServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/CloudStorageApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/StorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/CloudStorageServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +64,35 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.DiscardServer">
-    <configuration name="ClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ClientApp" />
+    <configuration name="CloudStorageApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.CloudStorageApp" />
+      <module name="cloud-storage-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageClientApp" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.CloudStorageClientApp" />
       <module name="cloud-storage-client" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CloudStorageServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.CloudStorageServer" />
+      <module name="cloud-storage-server" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.geekbrains.*" />
@@ -94,19 +118,6 @@
     </configuration>
     <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.geekbrains.ServerApp" />
-      <module name="cloud-storage-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.geekbrains.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ServerApp" />
       <module name="simple-telnet" />
       <extension name="coverage">
         <pattern>
@@ -118,33 +129,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StorageServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.geekbrains.StorageServer" />
-      <module name="cloud-storage-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.geekbrains.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Application.ServerApp" />
-      <item itemvalue="Application.ClientApp" />
-      <item itemvalue="Application.ServerApp (1)" />
       <item itemvalue="Application.DiscardServer" />
-      <item itemvalue="Application.StorageServer" />
+      <item itemvalue="Application.CloudStorageApp" />
+      <item itemvalue="Application.CloudStorageServer" />
+      <item itemvalue="Application.CloudStorageClientApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DiscardServer" />
-        <item itemvalue="Application.ServerApp (1)" />
-        <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.ServerApp" />
-        <item itemvalue="Application.StorageServer" />
+        <item itemvalue="Application.CloudStorageClientApp" />
+        <item itemvalue="Application.CloudStorageApp" />
+        <item itemvalue="Application.CloudStorageServer" />
       </list>
     </recent_temporary>
   </component>

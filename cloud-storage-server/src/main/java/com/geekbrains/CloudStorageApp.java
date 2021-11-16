@@ -1,6 +1,6 @@
 package com.geekbrains;
 
-public class ServerApp {
+public class CloudStorageApp {
 
     static final int PORT = 8189;
 
@@ -10,6 +10,6 @@ public class ServerApp {
             port = Integer.parseInt(args[0]);
         }
 
-        new StorageServer(port);
+        new CloudStorageServer(port);
     }
 }
