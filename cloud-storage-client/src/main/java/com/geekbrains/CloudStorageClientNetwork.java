@@ -16,9 +16,9 @@ import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CloudStorageNetwork {
+public class CloudStorageClientNetwork {
 
-    public CloudStorageNetwork(int port) {
+    public CloudStorageClientNetwork(String host, int port) {
 
         EventLoopGroup worker = new NioEventLoopGroup();
 
@@ -38,7 +38,7 @@ public class CloudStorageNetwork {
                         }
                     });
 
-            ChannelFuture future = bootstrap.bind(port).sync();
+            ChannelFuture future = bootstrap.connect(host, port).sync();
             log.debug("Client started...");
             future.channel().closeFuture().sync();
         } catch (InterruptedException e) {

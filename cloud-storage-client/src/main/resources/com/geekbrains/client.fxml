@@ -37,39 +37,47 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.geekbrains.ClientController">
-
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0"
+      prefWidth="640.0" xmlns="http://javafx.com/javafx/17"
+      fx:controller="com.geekbrains.ClientController" xmlns:fx="ttp://javafx.com/fxml/1">
     <MenuBar VBox.vgrow="NEVER">
         <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem fx:id="connect" onAction="#connect" mnemonicParsing="false" text="Connect..."/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem onAction="#exit" mnemonicParsing="false" text="Quit"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <MenuItem mnemonicParsing="false" text="Rename" />
+            <MenuItem mnemonicParsing="false" text="Undo"/>
+            <MenuItem mnemonicParsing="false" text="Redo"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Cut"/>
+            <MenuItem mnemonicParsing="false" text="Copy"/>
+            <MenuItem mnemonicParsing="false" text="Paste"/>
+            <MenuItem mnemonicParsing="false" text="Delete"/>
+            <SeparatorMenuItem mnemonicParsing="false"/>
+            <MenuItem mnemonicParsing="false" text="Select All"/>
+            <MenuItem mnemonicParsing="false" text="Unselect All"/>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
         </Menu>
     </MenuBar>
-
     <AnchorPane VBox.vgrow="ALWAYS">
-        <ListView fx:id="clientView" layoutX="14.0" layoutY="30.0" onMouseClicked="#clientSelectedItem" prefHeight="297.0" prefWidth="271.0" />
-        <ListView fx:id="serverView" layoutX="355.0" layoutY="30.0" prefHeight="297.0" prefWidth="271.0" />
-        <Button layoutX="288.0" layoutY="105.0" mnemonicParsing="false" onAction="#addFile" prefHeight="40.0" prefWidth="65.0" text="Add -&gt;" />
-        <Button layoutX="285.0" layoutY="159.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="40.0" prefWidth="70.0" text="&lt;- Delete" />
-        <TextField fx:id="input" layoutX="14.0" layoutY="337.0" onAction="#sendMessage" prefHeight="27.0" prefWidth="612.0" />
-        <TextField layoutX="14.0" layoutY="3.0" prefHeight="27.0" prefWidth="271.0" />
-        <TextField layoutX="355.0" layoutY="3.0" prefHeight="27.0" prefWidth="271.0" />
-        <Button layoutX="253.0" layoutY="3.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="32.0" text="..." />
-        <Button layoutX="594.0" layoutY="3.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="32.0" text="..." />
+        <HBox prefHeight="27.0" prefWidth="640.0">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Загрузить"/>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Скачать"/>
+        </HBox>
+        <HBox layoutY="27.0" prefHeight="427.0" prefWidth="640.0">
+            <TreeView prefHeight="348.0" prefWidth="189.0"/>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+            <ListView prefHeight="348.0" prefWidth="437.0"/>
+        </HBox>
     </AnchorPane>
 </VBox>

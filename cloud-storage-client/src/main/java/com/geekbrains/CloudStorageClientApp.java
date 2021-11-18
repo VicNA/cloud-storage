@@ -10,8 +10,9 @@ public class CloudStorageClientApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent parent = FXMLLoader.load(getClass().getResource("layout.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("client.fxml"));
         primaryStage.setScene(new Scene(parent));
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.show();
     }
 }

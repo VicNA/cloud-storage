@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class ClientController implements Initializable {
     public ListView<String> clientView;
     public ListView<String> serverView;
     public TextField input;
+    public MenuItem connect;
 
     private DataInputStream is;
     private DataOutputStream os;
@@ -35,21 +37,21 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            clientdDir = Paths.get("cloud-storage-client", "storage");
-            if (!Files.exists(clientdDir)) Files.createDirectory(clientdDir);
-            addListFiles();
-
-            Socket socket = new Socket("localhost", 8189);
-            is = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            os = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-
-            Thread readThread = new Thread(this::read);
-            readThread.setDaemon(true);
-            readThread.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+////            clientdDir = Paths.get("cloud-storage-client", "storage");
+////            if (!Files.exists(clientdDir)) Files.createDirectory(clientdDir);
+////            addListFiles();
+////
+////            Socket socket = new Socket("localhost", 8189);
+////            is = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+////            os = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+////
+////            Thread readThread = new Thread(this::read);
+////            readThread.setDaemon(true);
+////            readThread.start();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void addListFiles() throws IOException {
@@ -119,5 +121,17 @@ public class ClientController implements Initializable {
     }
 
     public void deleteFile(ActionEvent actionEvent) {
+    }
+
+    public void connect(ActionEvent actionEvent) {
+        Thread thread = new Thread(() -> new CloudStorageClientNetwork("localhost", 8189));
+        thread.setDaemon(true);
+        thread.start();
+        connect.setDisable(true);
+    }
+
+    public void exit(ActionEvent actionEvent) {
+        Platform.exit();
+        System.exit(0);
     }
 }
