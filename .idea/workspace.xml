@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="HomeWork2 v3">
       <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/client.fxml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MyHandler.java" afterDir="false" />
@@ -13,6 +14,9 @@
       <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageClientNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="d1b5b7a2-d1b1-45b7-943c-738582d134de" name="Changes" comment="Cloud-Storage step 1" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +38,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="HomeWork1" />
+        <entry key="$PROJECT_DIR$" value="HomeWork2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -200,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636306845592</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Cloud-Storage step 1">
+      <created>1637004417300</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1637004417300</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,7 +241,8 @@
     <MESSAGE value="HomeWork2 v1" />
     <MESSAGE value="HomeWork2 v2" />
     <MESSAGE value="HomeWork2 v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="HomeWork2 v3" />
+    <MESSAGE value="Cloud-Storage step 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cloud-Storage step 1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
