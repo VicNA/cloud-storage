@@ -11,7 +11,7 @@
     <modules>
         <module>cloud-storage-server</module>
         <module>cloud-storage-client</module>
-        <module>simple-telnet</module>
+        <module>cloud-storage-common</module>
     </modules>
 
     <properties>

@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-import java.net.Socket;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -124,7 +123,7 @@ public class ClientController implements Initializable {
     }
 
     public void connect(ActionEvent actionEvent) {
-        Thread thread = new Thread(() -> new CloudStorageClientNetwork("localhost", 8189));
+        Thread thread = new Thread(new ClientNetty("localhost", 8189));
         thread.setDaemon(true);
         thread.start();
         connect.setDisable(true);
