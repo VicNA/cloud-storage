@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4383f8fa-ff0f-4bda-b44d-d86fa251f83f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientMessageHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/main-window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientNetty.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientNetty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/ListMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/ListMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MessageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerNetty.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerNetty.java" afterDir="false" />
-    </list>
+    <list default="true" id="4383f8fa-ff0f-4bda-b44d-d86fa251f83f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
