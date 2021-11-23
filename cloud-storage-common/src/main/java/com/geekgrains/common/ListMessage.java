@@ -10,13 +10,17 @@ import java.util.stream.Collectors;
 
 @Getter
 @ToString
-public class ListMessage extends Message {
+public class ListMessage implements Message {
 
     private final List<String> files;
 
     public ListMessage(Path dir) throws Exception {
-        setType(CommandType.LIST_MESSAGE);
         files = Files.list(dir).map(p -> p.getFileName().toString())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.LIST_MESSAGE;
     }
 }

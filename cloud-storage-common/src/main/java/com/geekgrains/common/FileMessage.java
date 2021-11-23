@@ -7,7 +7,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class FileMessage extends Message {
+public class FileMessage implements Message {
 
     private static final int BUTCH_SIZE = 8192;
 
@@ -30,6 +30,10 @@ public class FileMessage extends Message {
         this.isFirstButch = isFirstButch;
         this.endByteNum = endByteNum;
         this.isFinishBatch = isFinishBatch;
-        setType(CommandType.FILE_MESSAGE);
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.FILE_MESSAGE;
     }
 }

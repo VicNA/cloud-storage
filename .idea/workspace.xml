@@ -5,42 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4383f8fa-ff0f-4bda-b44d-d86fa251f83f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/Callback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/CommandType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/ListMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientMessageHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/main-window.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageClientApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/CloudStorageClientNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientNetty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/client.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/resources/com/geekbrains/layout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/CloudStorageApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/CloudStorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerNetty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/DiscardServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/DiscardServerHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/Handler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MessageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/TimeServerHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple-telnet/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/NioServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple-telnet/src/main/java/com/geekbrains/ServerApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple-telnet/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientNetty.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-client/src/main/java/com/geekbrains/ClientNetty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/FileRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/ListMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/ListMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-common/src/main/java/com/geekgrains/common/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/MessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerNetty.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud-storage-server/src/main/java/com/geekbrains/ServerNetty.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Cloud-Storage" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="21C3Pb2c9OWNwVofj1ZToBH8r1m" />
@@ -67,7 +60,7 @@
       <recent name="com.geekbrains" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ServerApp">
     <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.geekbrains.ClientApp" />
       <module name="cloud-storage-client" />
@@ -81,8 +74,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ServerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.geekbrains.ServerApp" />
+      <module name="cloud-storage-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.geekbrains.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ServerApp" />
         <item itemvalue="Application.ClientApp" />
       </list>
     </recent_temporary>
@@ -108,5 +115,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

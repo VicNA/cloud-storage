@@ -38,6 +38,7 @@ public class ServerNetty {
                     });
 
             ChannelFuture future = bootstrap.bind(port).sync();
+
             log.debug("Server started...");
             future.channel().closeFuture().sync();
         } catch (InterruptedException e) {
