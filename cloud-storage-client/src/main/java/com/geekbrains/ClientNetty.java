@@ -1,5 +1,6 @@
 package com.geekbrains;
 
+import com.geekgrains.common.Message;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -10,8 +11,6 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -56,5 +55,9 @@ public class ClientNetty {
 
     public void close() {
         channel.close();
+    }
+
+    public void sendMessage(Message msg) {
+        channel.writeAndFlush(msg);
     }
 }

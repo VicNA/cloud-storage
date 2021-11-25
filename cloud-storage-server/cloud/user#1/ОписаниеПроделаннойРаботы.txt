@@ -1,0 +1,12 @@
+- Настроил подключение клиентов к серверу через Netty
+- Настроил корректное отключение клиента от сервера
+- Организовал каждому клиенту отдельную папку в "облаке", где будут организовываться структура каталогов и файлов клиента.
+
+
+Вопрос.
+Можно ли организовать, а если можно то как (пример), передачу файлов и комманд, используя в pipeline обработчик ChunkedWriteHandler?
+Насколько я понимаю, ChunkedWriteHandler и ObjectDecoder не "дружат" между собой
+https://stackoverflow.com/questions/27357672/sending-file-from-server-to-client-by-using-netty-io
+
+"3) Final note: have a look and take care of your Encoder/Decoder (ObjectEncoder/ObjectDecoder) since I'm not 100% sure if they can collaborate with such write/read of ByteBuf from/to a file. It may work, or not..."
+" Thanks, seems like the Server is sending the File, but client cannot decode it correctly, as you mentioned in 3). I'm getting 'io.netty.handler.codec.TooLongFrameException: Adjusted frame length exceeds 1048576: 4292411364 - discarded'. Do you have some keywords, where to start? "
