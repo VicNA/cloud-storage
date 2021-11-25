@@ -8,6 +8,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,9 +22,14 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     private Path serverRootDir;
     private byte[] buffer;
 
+    // temp
+    private static int count = 0;
+
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        serverRootDir = Paths.get("cloud-storage-server", "cloud");
+        count++;
+        serverRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
+        if (!Files.exists(serverRootDir))  Files.createDirectories(serverRootDir);
         ctx.writeAndFlush(new ListMessage(serverRootDir));
         buffer = new byte[8192];
     }

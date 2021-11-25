@@ -15,43 +15,46 @@ import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ClientNetty implements Runnable {
+public class ClientNetty {
 
-    private final String host;
-    private final int port;
+    private SocketChannel channel;
 
     public ClientNetty(String host, int port) {
-        this.host = host;
-        this.port = port;
+
+        Thread thread = new Thread(() -> {
+            EventLoopGroup worker = new NioEventLoopGroup();
+
+            try {
+                Bootstrap bootstrap = new Bootstrap();
+                bootstrap.group(worker)
+                        .channel(NioSocketChannel.class)
+                        .handler(new ChannelInitializer<SocketChannel>() {
+                            @Override
+                            protected void initChannel(SocketChannel socketChannel) {
+                                channel = socketChannel;
+                                channel.pipeline().addLast(
+                                        new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
+                                        new ObjectEncoder()//,
+//                                    new ClientMessageHandler()
+                                );
+                            }
+                        });
+
+                ChannelFuture future = bootstrap.connect(host, port).sync();
+
+                log.debug("Client started...");
+                future.channel().closeFuture().sync();
+            } catch (InterruptedException e) {
+                log.error("e", e);
+            } finally {
+                worker.shutdownGracefully();
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
-    @Override
-    public void run() {
-        EventLoopGroup worker = new NioEventLoopGroup();
-
-        try {
-            Bootstrap bootstrap = new Bootstrap();
-            bootstrap.group(worker)
-                    .channel(NioSocketChannel.class)
-                    .handler(new ChannelInitializer<SocketChannel>() {
-                        @Override
-                        protected void initChannel(SocketChannel socketChannel) {
-                            socketChannel.pipeline().addLast(
-                                    new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
-                                    new ObjectEncoder()//,
-//                                    new ClientMessageHandler()
-                            );
-                        }
-                    });
-
-            ChannelFuture future = bootstrap.connect(host, port).sync();
-
-            log.debug("Client started...");
-            future.channel().closeFuture().sync();
-        } catch (InterruptedException e) {
-            log.error("e", e);
-        } finally {
-            worker.shutdownGracefully();
-        }
+    public void close() {
+        channel.close();
     }
 }

@@ -32,6 +32,8 @@ public class ClientController implements Initializable {
     private BufferedInputStream bis;
     private BufferedOutputStream bos;
 
+    private ClientNetty netty;
+
     private Path clientdDir;
 
     @Override
@@ -123,14 +125,16 @@ public class ClientController implements Initializable {
     }
 
     public void connect(ActionEvent actionEvent) {
-        Thread thread = new Thread(new ClientNetty("localhost", 8189));
-        thread.setDaemon(true);
-        thread.start();
+        netty = new ClientNetty("localhost", 8189);
         connect.setDisable(true);
     }
 
-    public void exit(ActionEvent actionEvent) {
+    public void disconnect() {
+        netty.close();
+    }
+
+    public void exit() {
+        disconnect();
         Platform.exit();
-        System.exit(0);
     }
 }
