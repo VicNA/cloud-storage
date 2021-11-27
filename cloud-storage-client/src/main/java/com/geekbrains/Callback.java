@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public interface Callback {
 
-    void callback(Message msg) throws IOException;
+    void call(Message msg) throws IOException;
 
 }

@@ -2,17 +2,10 @@ package com.geekgrains.common;
 
 import java.io.Serializable;
 
-public interface Message extends Serializable {
+public abstract class Message<T extends Message> implements Serializable {
 
-    CommandType getType();
+    public abstract T getMessage();
 
-//    private CommandType type;
+    public abstract Command getCommand();
 
-//    protected void setType(CommandType type) {
-//        this.type = type;
-//    }
-//
-//    public CommandType getType() {
-//        return type;
-//    }
 }

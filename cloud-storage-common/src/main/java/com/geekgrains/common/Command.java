@@ -1,7 +1,8 @@
 package com.geekgrains.common;
 
-public enum CommandType {
+public enum Command {
     FILE_MESSAGE,
     FILE_REQUEST,
-    LIST_MESSAGE
+    LIST_DIRECTORY,
+    LIST_FILE
 }

@@ -17,9 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 public class ClientNetty {
 
     private SocketChannel channel;
+    private Callback callback;
 
-    public ClientNetty(String host, int port) {
+    public ClientNetty(Callback callback) {
+        this.callback = callback;
+    }
 
+    public void connect(String host, int port) {
         Thread thread = new Thread(() -> {
             EventLoopGroup worker = new NioEventLoopGroup();
 
@@ -33,8 +37,8 @@ public class ClientNetty {
                                 channel = socketChannel;
                                 channel.pipeline().addLast(
                                         new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
-                                        new ObjectEncoder()//,
-//                                    new ClientMessageHandler()
+                                        new ObjectEncoder(),
+                                        new ClientMessageHandler(callback)
                                 );
                             }
                         });

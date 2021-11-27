@@ -1,14 +1,10 @@
 package com.geekbrains;
 
-import com.geekgrains.common.FileMessage;
-import com.geekgrains.common.FileRequest;
-import com.geekgrains.common.ListMessage;
-import com.geekgrains.common.Message;
+import com.geekgrains.common.*;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,13 +26,14 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
         count++;
         serverRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
         if (!Files.exists(serverRootDir))  Files.createDirectories(serverRootDir);
-        ctx.writeAndFlush(new ListMessage(serverRootDir));
+        ctx.writeAndFlush(new ListDirectory(serverRootDir));
+        ctx.writeAndFlush(new ListFile(serverRootDir));
         buffer = new byte[8192];
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
-        switch (msg.getType()) {
+        switch (msg.getCommand()) {
             case FILE_MESSAGE:
                 processFile((FileMessage) msg, ctx);
                 break;
@@ -80,7 +77,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
         }
 
         if (msg.isFinishBatch()) {
-            ctx.writeAndFlush(new ListMessage(serverRootDir));
+            ctx.writeAndFlush(new ListFile(serverRootDir));
         }
     }
 }

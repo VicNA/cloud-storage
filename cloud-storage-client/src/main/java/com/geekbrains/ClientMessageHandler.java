@@ -17,6 +17,6 @@ public class ClientMessageHandler  extends SimpleChannelInboundHandler<Message> 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Message msg) throws Exception {
         log.debug("Received: {}", msg);
-        callback.callback(msg);
+        callback.call(msg);
     }
 }

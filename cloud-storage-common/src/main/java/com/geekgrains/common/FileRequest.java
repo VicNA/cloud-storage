@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class FileRequest implements Message {
+public class FileRequest extends Message<FileRequest> {
 
     private final String name;
 
@@ -14,7 +14,12 @@ public class FileRequest implements Message {
     }
 
     @Override
-    public CommandType getType() {
-        return CommandType.FILE_REQUEST;
+    public FileRequest getMessage() {
+        return this;
+    }
+
+    @Override
+    public Command getCommand() {
+        return Command.FILE_REQUEST;
     }
 }

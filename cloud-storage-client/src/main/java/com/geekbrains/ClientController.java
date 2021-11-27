@@ -1,11 +1,12 @@
 package com.geekbrains;
 
+import com.geekgrains.common.ListDirectory;
+import com.geekgrains.common.ListFile;
+import com.geekgrains.common.Message;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +22,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ClientController implements Initializable {
 
-    public ListView<String> clientView;
-    public ListView<String> serverView;
+    public TreeView<String> clientTreeView;
+    public ListView<String> clientListView;
     public TextField input;
     public MenuItem connect;
 
@@ -38,6 +39,7 @@ public class ClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        clientTreeView.setRoot(new TreeItem<>("MyCloud"));
 //        try {
 ////            clientdDir = Paths.get("cloud-storage-client", "storage");
 ////            if (!Files.exists(clientdDir)) Files.createDirectory(clientdDir);
@@ -55,10 +57,17 @@ public class ClientController implements Initializable {
 //        }
     }
 
-    private void addListFiles() throws IOException {
-        clientView.getItems().clear();
-        clientView.getItems().addAll(getFiles(clientdDir));
-        clientView.getSelectionModel().selectFirst();
+    private void addListDirectories(ListDirectory msg) {
+        for (String dir : msg.getList()) {
+            clientTreeView.getRoot().getChildren().add(new TreeItem<>(dir));
+        }
+        clientTreeView.getSelectionModel().selectFirst();
+    }
+
+    private void addListFiles(ListFile msg) throws IOException {
+        clientListView.getItems().clear();
+        clientListView.getItems().addAll(msg.getList());
+        clientListView.getSelectionModel().selectFirst();
     }
 
     private List<String> getFiles(Path path) throws IOException {
@@ -76,11 +85,11 @@ public class ClientController implements Initializable {
                 if (msg.startsWith("/")) {
                     if (msg.startsWith("/file ")) {
                         String fileName = msg.split(" ", 3)[1];
-                        Platform.runLater(() -> {
-                            if (!serverView.getItems().contains(fileName)) {
-                                serverView.getItems().add(fileName);
-                            }
-                        });
+//                        Platform.runLater(() -> {
+//                            if (!serverView.getItems().contains(fileName)) {
+//                                serverView.getItems().add(fileName);
+//                            }
+//                        });
                     }
                 }
             }
@@ -98,13 +107,13 @@ public class ClientController implements Initializable {
 
     public void clientSelectedItem(MouseEvent mouseEvent) {
         if (mouseEvent.getClickCount() == 2) {
-            String item = clientView.getSelectionModel().getSelectedItem();
+            String item = clientListView.getSelectionModel().getSelectedItem();
             input.setText(item);
         }
     }
 
     public void addFile(ActionEvent actionEvent) {
-        String fileName = clientView.getSelectionModel().getSelectedItem();
+        String fileName = clientListView.getSelectionModel().getSelectedItem();
         Path filePath = Paths.get(clientdDir.toString(), fileName);
         File file = new File(filePath.toString());
 
@@ -125,8 +134,24 @@ public class ClientController implements Initializable {
     }
 
     public void connect(ActionEvent actionEvent) {
-        netty = new ClientNetty("localhost", 8189);
+        netty = new ClientNetty(this::action);
+        netty.connect("localhost", 8189);
         connect.setDisable(true);
+    }
+
+    private void action(Message msg) throws IOException {
+        switch (msg.getCommand()) {
+            case FILE_MESSAGE:
+                break;
+            case FILE_REQUEST:
+                break;
+            case LIST_DIRECTORY:
+                addListDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
+                break;
+            case LIST_FILE:
+                addListFiles((ListFile) msg.getMessage());
+                break;
+        }
     }
 
     public void disconnect() {
