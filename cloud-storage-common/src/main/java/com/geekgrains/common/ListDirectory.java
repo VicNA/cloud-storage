@@ -12,19 +12,22 @@ import java.util.stream.Collectors;
 @ToString
 public class ListDirectory extends Message<ListDirectory> {
 
+    private final String currentDir;
     private final List<String> list;
 
     public ListDirectory(Path dir) throws Exception {
+        currentDir = dir.toString();
+
         list = Files.list(dir)
                 .filter(Files::isDirectory)
                 .map(p -> p.getFileName().toString())
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public ListDirectory getMessage() {
-        return this;
-    }
+//    @Override
+//    public ListDirectory getMessage() {
+//        return this;
+//    }
 
     @Override
     public Command getCommand() {

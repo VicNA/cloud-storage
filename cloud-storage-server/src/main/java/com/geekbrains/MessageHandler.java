@@ -1,6 +1,8 @@
 package com.geekbrains;
 
 import com.geekgrains.common.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -19,16 +21,18 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     private byte[] buffer;
 
     // temp
-    private static int count = 0;
+    private static int count = 1;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        count++;
+        log.debug("channelActive = {}", ctx);
+
         serverRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
-        if (!Files.exists(serverRootDir))  Files.createDirectories(serverRootDir);
-        ctx.writeAndFlush(new ListDirectory(serverRootDir));
-        ctx.writeAndFlush(new ListFile(serverRootDir));
-        buffer = new byte[8192];
+        if (!Files.exists(serverRootDir)) Files.createDirectories(serverRootDir);
+        ctx.write(new ListDirectory(serverRootDir));
+        ctx.write(new ListFile(serverRootDir));
+        ctx.flush();
+//        buffer = new byte[8192];
     }
 
     @Override
@@ -47,7 +51,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
         boolean isFirstButch = true;
         Path filePath = serverRootDir.resolve(msg.getName());
         long size = Files.size(filePath);
-        try (FileInputStream is = new FileInputStream(serverRootDir.resolve(msg.getName()).toFile())){
+        try (FileInputStream is = new FileInputStream(serverRootDir.resolve(msg.getName()).toFile())) {
             int read;
             while ((read = is.read(buffer)) != -1) {
                 FileMessage message = FileMessage.builder()
@@ -72,7 +76,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             Files.deleteIfExists(file);
         }
 
-        try(FileOutputStream os = new FileOutputStream(file.toFile(), true)) {
+        try (FileOutputStream os = new FileOutputStream(file.toFile(), true)) {
             os.write(msg.getBytes(), 0, msg.getEndByteNum());
         }
 

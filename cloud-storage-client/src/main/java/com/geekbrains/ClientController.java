@@ -43,7 +43,6 @@ public class ClientController implements Initializable {
     public void connect(ActionEvent actionEvent) {
         netty = new ClientNetty(this::action);
         netty.connect("localhost", 8189);
-        connect.setDisable(true);
     }
 
     public void disconnect() {
@@ -56,18 +55,20 @@ public class ClientController implements Initializable {
     }
 
     private void action(Message msg) throws IOException { // Как побороть сообщение: Raw use of parameterized class 'Message'?
-        switch (msg.getCommand()) {
-            case FILE_MESSAGE:
-                break;
-            case FILE_REQUEST:
-                break;
-            case LIST_DIRECTORY:
-                addListDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
-                break;
-            case LIST_FILE:
-                addListFiles((ListFile) msg.getMessage());
-                break;
-        }
+        Platform.runLater(() -> {
+            switch (msg.getCommand()) {
+                case FILE_MESSAGE:
+                    break;
+                case FILE_REQUEST:
+                    break;
+                case LIST_DIRECTORY:
+                    addListDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
+                    break;
+                case LIST_FILE:
+                    addListFiles((ListFile) msg);
+                    break;
+            }
+        });
     }
 
     private void addListDirectories(ListDirectory msg) {
@@ -75,16 +76,14 @@ public class ClientController implements Initializable {
             clientTreeView.setRoot(new TreeItem<>("MyCloud"));
         }
 
-        for (String dir : msg.getList()) {
-            clientTreeView.getRoot().getChildren().add(new TreeItem<>(dir));
+        for (String item : msg.getList()) {
+            clientTreeView.getRoot().getChildren().add(new TreeItem<>(item));
         }
-        clientTreeView.getSelectionModel().selectFirst();
     }
 
-    private void addListFiles(ListFile msg) throws IOException {
+    private void addListFiles(ListFile msg){
         clientListView.getItems().clear();
         clientListView.getItems().addAll(msg.getList());
-        clientListView.getSelectionModel().selectFirst();
     }
 
     public void createDirectory(ActionEvent actionEvent) {
