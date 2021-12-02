@@ -13,12 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class ClientController implements Initializable {
@@ -31,6 +28,8 @@ public class ClientController implements Initializable {
     public SplitPane splitPane;
 
     private ClientNetty netty;
+    private Path currentDir;
+    private TreeItem<String> current;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,8 +40,9 @@ public class ClientController implements Initializable {
     }
 
     public void connect(ActionEvent actionEvent) {
-        netty = new ClientNetty(this::action);
-        netty.connect("localhost", 8189);
+        disconnect();
+
+        netty = new ClientNetty(this::action).connect("localhost", 8189);
     }
 
     public void disconnect() {
@@ -61,32 +61,63 @@ public class ClientController implements Initializable {
                     break;
                 case FILE_REQUEST:
                     break;
-                case LIST_DIRECTORY:
-                    addListDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
+                case LIST_DIRECTORIES:
+                    createTreeDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
                     break;
-                case LIST_FILE:
+                case LIST_FILES:
                     addListFiles((ListFile) msg);
                     break;
             }
         });
     }
 
-    private void addListDirectories(ListDirectory msg) {
-        if (clientTreeView.getRoot() == null) {
-            clientTreeView.setRoot(new TreeItem<>("MyCloud"));
+    private void createTreeDirectories(ListDirectory msg) {
+        currentDir = Paths.get(msg.getCurrentDir());
+
+        clientTreeView.setRoot(null);
+
+        current = new TreeItem<>("MyCloud");
+        clientTreeView.setRoot(current);
+
+        for (String path : msg.getList()) {
+            TreeItem<String> node = current;
+            for (String s : path.replace(currentDir.toString() + "\\", "").split("\\\\")) {
+                node = addTreeNode(node, s);
+            }
         }
 
-        for (String item : msg.getList()) {
-            clientTreeView.getRoot().getChildren().add(new TreeItem<>(item));
-        }
+        current.setExpanded(true);
     }
 
-    private void addListFiles(ListFile msg){
+    private TreeItem<String> addTreeNode(TreeItem<String> parent, String value) {
+        for (TreeItem<String> child : parent.getChildren()) {
+            if (value.equals(child.getValue())) {
+                return child;
+            }
+        }
+        TreeItem<String> newChild = new TreeItem<>(value);
+        parent.getChildren().add(newChild);
+        return newChild;
+    }
+
+    private void addListFiles(ListFile msg) {
         clientListView.getItems().clear();
         clientListView.getItems().addAll(msg.getList());
     }
 
     public void createDirectory(ActionEvent actionEvent) {
 
+    }
+
+    public void openDirectory(MouseEvent mouseEvent) {
+        Platform.runLater(() -> {
+            if (clientTreeView.getSelectionModel().getSelectedItem() != null) {
+                current = clientTreeView.getSelectionModel().getSelectedItem();
+//                current.getValue()
+
+            }
+//        currentDir.resolve(current.)
+//        netty.sendMessage(new ListFile(currentDir.toString()));
+        });
     }
 }

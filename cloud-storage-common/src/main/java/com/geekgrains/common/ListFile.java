@@ -12,7 +12,12 @@ import java.util.stream.Collectors;
 @ToString
 public class ListFile extends Message<ListFile> {
 
-    private final List<String> list;
+    private String path;
+    private List<String> list;
+
+    public ListFile(String path) {
+        this.path = path;
+    }
 
     public ListFile(Path dir) throws Exception {
         list = Files.list(dir)
@@ -27,6 +32,6 @@ public class ListFile extends Message<ListFile> {
 
     @Override
     public Command getCommand() {
-        return Command.LIST_FILE;
+        return Command.LIST_FILES;
     }
 }

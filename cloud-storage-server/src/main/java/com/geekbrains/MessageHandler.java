@@ -29,6 +29,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 
         serverRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
         if (!Files.exists(serverRootDir)) Files.createDirectories(serverRootDir);
+
         ctx.write(new ListDirectory(serverRootDir));
         ctx.write(new ListFile(serverRootDir));
         ctx.flush();

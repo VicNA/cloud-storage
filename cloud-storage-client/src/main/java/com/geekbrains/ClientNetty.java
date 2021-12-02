@@ -23,7 +23,7 @@ public class ClientNetty {
         this.callback = callback;
     }
 
-    public void connect(String host, int port) {
+    public ClientNetty connect(String host, int port) {
         Thread thread = new Thread(() -> {
             EventLoopGroup worker = new NioEventLoopGroup();
 
@@ -55,6 +55,12 @@ public class ClientNetty {
         });
         thread.setDaemon(true);
         thread.start();
+
+        return this;
+    }
+
+    public boolean isConnected() {
+        return channel != null && channel.isOpen();
     }
 
     public void close() {

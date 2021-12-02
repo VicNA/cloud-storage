@@ -18,9 +18,10 @@ public class ListDirectory extends Message<ListDirectory> {
     public ListDirectory(Path dir) throws Exception {
         currentDir = dir.toString();
 
-        list = Files.list(dir)
+        list = Files.walk(dir)
                 .filter(Files::isDirectory)
-                .map(p -> p.getFileName().toString())
+                .filter(path -> path != dir)
+                .map(Path::toString)
                 .collect(Collectors.toList());
     }
 
@@ -31,6 +32,6 @@ public class ListDirectory extends Message<ListDirectory> {
 
     @Override
     public Command getCommand() {
-        return Command.LIST_DIRECTORY;
+        return Command.LIST_DIRECTORIES;
     }
 }

@@ -39,7 +39,8 @@
             <cursor>
                 <Cursor fx:constant="DEFAULT" />
             </cursor>
-            <TreeView fx:id="clientTreeView" prefHeight="418.0" prefWidth="200.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <TreeView fx:id="clientTreeView" prefHeight="418.0" prefWidth="200.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"
+                      onMouseClicked="#openDirectory">
                 <opaqueInsets>
                     <Insets />
                 </opaqueInsets>
