@@ -1,8 +1,6 @@
 package com.geekbrains;
 
 import com.geekgrains.common.*;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +15,7 @@ import java.nio.file.Paths;
 @Slf4j
 public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 
-    private Path serverRootDir;
+    private Path serverClietnRootDir;
     private byte[] buffer;
 
     // temp
@@ -27,11 +25,11 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         log.debug("channelActive = {}", ctx);
 
-        serverRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
-        if (!Files.exists(serverRootDir)) Files.createDirectories(serverRootDir);
+        serverClietnRootDir = Paths.get("cloud-storage-server", "cloud", "user#" + count);
+        if (!Files.exists(serverClietnRootDir)) Files.createDirectories(serverClietnRootDir);
 
-        ctx.write(new ListDirectory(serverRootDir));
-        ctx.write(new ListFile(serverRootDir));
+        ctx.write(new ListDirectories(serverClietnRootDir));
+        ctx.write(new ListFiles(serverClietnRootDir.toString()).buildList());
         ctx.flush();
 //        buffer = new byte[8192];
     }
@@ -39,6 +37,10 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
         switch (msg.getCommand()) {
+            case LIST_DIRECTORIES:
+                ctx.writeAndFlush(((ListDirectories) msg).buildList(serverClietnRootDir));
+            case LIST_FILES:
+                ctx.writeAndFlush(((ListFiles) msg).buildList());
             case FILE_MESSAGE:
                 processFile((FileMessage) msg, ctx);
                 break;
@@ -50,9 +52,9 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 
     private void sendFile(FileRequest msg, ChannelHandlerContext ctx) throws IOException {
         boolean isFirstButch = true;
-        Path filePath = serverRootDir.resolve(msg.getName());
+        Path filePath = serverClietnRootDir.resolve(msg.getName());
         long size = Files.size(filePath);
-        try (FileInputStream is = new FileInputStream(serverRootDir.resolve(msg.getName()).toFile())) {
+        try (FileInputStream is = new FileInputStream(serverClietnRootDir.resolve(msg.getName()).toFile())) {
             int read;
             while ((read = is.read(buffer)) != -1) {
                 FileMessage message = FileMessage.builder()
@@ -72,7 +74,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     }
 
     private void processFile(FileMessage msg, ChannelHandlerContext ctx) throws Exception {
-        Path file = serverRootDir.resolve(msg.getName());
+        Path file = serverClietnRootDir.resolve(msg.getName());
         if (msg.isFirstButch()) {
             Files.deleteIfExists(file);
         }
@@ -81,8 +83,8 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             os.write(msg.getBytes(), 0, msg.getEndByteNum());
         }
 
-        if (msg.isFinishBatch()) {
-            ctx.writeAndFlush(new ListFile(serverRootDir));
-        }
+//        if (msg.isFinishBatch()) {
+//            ctx.writeAndFlush(new ListFiles(serverClietnRootDir));
+//        }
     }
 }

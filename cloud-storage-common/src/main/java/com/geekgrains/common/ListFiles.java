@@ -5,28 +5,31 @@ import lombok.ToString;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 @ToString
-public class ListFile extends Message<ListFile> {
+public class ListFiles extends Message<ListFiles> {
 
-    private String path;
+    private final String path;
     private List<String> list;
 
-    public ListFile(String path) {
+    public ListFiles(String path) {
         this.path = path;
     }
 
-    public ListFile(Path dir) throws Exception {
-        list = Files.list(dir)
+    public ListFiles buildList() throws Exception {
+        list = Files.list(Paths.get(path))
                 .map(p -> p.getFileName().toString())
                 .collect(Collectors.toList());
+
+        return this;
     }
 
     @Override
-    public ListFile getMessage() {
+    public ListFiles getMessage() {
         return this;
     }
 

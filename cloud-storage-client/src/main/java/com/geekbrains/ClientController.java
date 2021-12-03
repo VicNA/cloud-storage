@@ -1,13 +1,14 @@
 package com.geekbrains;
 
-import com.geekgrains.common.ListDirectory;
-import com.geekgrains.common.ListFile;
+import com.geekgrains.common.ListDirectories;
+import com.geekgrains.common.ListFiles;
 import com.geekgrains.common.Message;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,7 +29,9 @@ public class ClientController implements Initializable {
     public SplitPane splitPane;
 
     private ClientNetty netty;
-    private Path currentDir;
+    private String clientRootDir;
+    private String serverSeparator;
+    private String currentClientDir;
     private TreeItem<String> current;
 
     @Override
@@ -37,6 +40,29 @@ public class ClientController implements Initializable {
         // Указание процентного соотношение допустимых минимальных размеров ширины при движении разделителя
         treeViewBox.minWidthProperty().bind(splitPane.widthProperty().multiply(0.15));
         listViewBox.minWidthProperty().bind(splitPane.widthProperty().multiply(0.6));
+
+        clientTreeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
+            @Override
+            public void changed(ObservableValue<? extends TreeItem<String>> changed, TreeItem<String> oldValue, TreeItem<String> newValue) {
+                if (newValue != null) {
+                    current = newValue;
+                    if (current.getParent() != null) {
+                        StringBuilder sb = new StringBuilder(current.getValue());
+                        TreeItem<String> parent = current.getParent();
+                        while (parent.getParent() != null) {
+                            sb.insert(0, serverSeparator);
+                            sb.insert(0, parent.getValue());
+                            parent = parent.getParent();
+                        }
+
+                        currentClientDir = sb.insert(0, serverSeparator).insert(0, clientRootDir).toString();
+                    } else {
+                        currentClientDir = clientRootDir;
+                    }
+                    netty.sendMessage(new ListFiles(currentClientDir));
+                }
+            }
+        });
     }
 
     public void connect(ActionEvent actionEvent) {
@@ -62,17 +88,18 @@ public class ClientController implements Initializable {
                 case FILE_REQUEST:
                     break;
                 case LIST_DIRECTORIES:
-                    createTreeDirectories((ListDirectory) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
+                    createTreeDirectories((ListDirectories) msg.getMessage()); // Как правильно вытащить нужный экземпляр без каста?
                     break;
                 case LIST_FILES:
-                    addListFiles((ListFile) msg);
+                    addListFiles((ListFiles) msg);
                     break;
             }
         });
     }
 
-    private void createTreeDirectories(ListDirectory msg) {
-        currentDir = Paths.get(msg.getCurrentDir());
+    private void createTreeDirectories(ListDirectories msg) {
+        clientRootDir = msg.getClientRootDir();
+        serverSeparator = msg.getSeparator();
 
         clientTreeView.setRoot(null);
 
@@ -81,7 +108,10 @@ public class ClientController implements Initializable {
 
         for (String path : msg.getList()) {
             TreeItem<String> node = current;
-            for (String s : path.replace(currentDir.toString() + "\\", "").split("\\\\")) {
+            StringBuilder sb = new StringBuilder(path);
+            sb.delete(0, clientRootDir.length()).delete(0, 1);
+            String regexp = serverSeparator.equals("\\") ? "\\\\" : "/";
+            for (String s : sb.toString().split(regexp)) {
                 node = addTreeNode(node, s);
             }
         }
@@ -100,7 +130,7 @@ public class ClientController implements Initializable {
         return newChild;
     }
 
-    private void addListFiles(ListFile msg) {
+    private void addListFiles(ListFiles msg) {
         clientListView.getItems().clear();
         clientListView.getItems().addAll(msg.getList());
     }
@@ -109,15 +139,8 @@ public class ClientController implements Initializable {
 
     }
 
-    public void openDirectory(MouseEvent mouseEvent) {
-        Platform.runLater(() -> {
-            if (clientTreeView.getSelectionModel().getSelectedItem() != null) {
-                current = clientTreeView.getSelectionModel().getSelectedItem();
-//                current.getValue()
-
-            }
-//        currentDir.resolve(current.)
-//        netty.sendMessage(new ListFile(currentDir.toString()));
-        });
+    public void reload() {
+        netty.sendMessage(new ListDirectories());
+        netty.sendMessage(new ListFiles(currentClientDir));
     }
 }
